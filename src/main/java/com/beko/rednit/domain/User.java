@@ -1,12 +1,17 @@
 package com.beko.rednit.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,5 +33,10 @@ public class User {
     @JoinTable(name = "user_event",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "event_id")})
-    private Set<Event> events = new HashSet<>();
+    private List<Event> events = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "User with id:" + getId() + " and login:" + getLogin();
+    }
 }
