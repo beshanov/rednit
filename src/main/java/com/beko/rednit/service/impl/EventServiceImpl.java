@@ -22,6 +22,21 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Event save(Event event) {
+       return eventRepository.save(event);
+    }
+
+    @Override
+    public void delete(Event event) {
+        eventRepository.delete(event);
+    }
+
+    @Override
+    public Iterable<Event> getAll() {
+        return eventRepository.findAll();
+    }
+
+    @Override
     public List<Event> getEventsByUserId(Long userId) {
         return eventRepository.getEventsByUserId(userId);
     }
