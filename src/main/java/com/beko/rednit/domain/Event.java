@@ -1,12 +1,17 @@
 package com.beko.rednit.domain;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
+@Data
+@RequiredArgsConstructor
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,5 +31,10 @@ public class Event {
                     CascadeType.MERGE
             },
             mappedBy = "events")
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Event with id : " + getId();
+    }
 }
